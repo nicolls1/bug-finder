@@ -35,6 +35,11 @@ pip install -r requirements.txt
 ### Run
 
 ```
+python main.py <path_to_bug> <path_to_landscape>
+```
+
+Example:
+```
 python main.py test_files/default/bug.txt test_files/default/landscape.txt
 ```
 

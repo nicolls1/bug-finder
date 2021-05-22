@@ -55,4 +55,4 @@ It seems the landscape file is ended with 2 newlines and I removed one of them d
 
 ## Edit Update #2:
 
-I assumed, based off of the one example, that all landscape files would be the same length. I now accept any uneven landscape. Test added as well.
+I assumed, based off of the one example, that all landscape files would be the same length. I now accept any uneven landscape. Test added as well. Large file tested/optimised against same lines. Might be a better/faster solution if all lines are always a different case.

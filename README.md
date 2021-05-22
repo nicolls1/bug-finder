@@ -52,3 +52,7 @@ python tests.py
 ## Edit Update:
 
 It seems the landscape file is ended with 2 newlines and I removed one of them during my testing. I added a check to see if the last line is empty and remove it if it is. Also, I added a test to check if the landscape file is valid and a unit test for it.
+
+## Edit Update #2:
+
+I assumed, based off of the one example, that all landscape files would be the same length. I now accept any uneven landscape. Test added as well.

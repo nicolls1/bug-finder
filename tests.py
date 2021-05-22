@@ -81,6 +81,11 @@ class TestFindBugs(unittest.TestCase):
             find_bugs('test_files/random_bug/bug.txt', 'test_files/random_bug/landscape.txt'), 3
         )
 
+    def test_uneven_landscape(self):
+        self.assertEqual(
+            find_bugs('test_files/uneven_landscape/bug.txt', 'test_files/uneven_landscape/landscape.txt'), 3
+        )
+
     def test_email(self):
         self.assertEqual(
             find_bugs('test_files/email/bug.txt', 'test_files/email/landscape.txt'), 3
@@ -89,10 +94,6 @@ class TestFindBugs(unittest.TestCase):
     def test_no_bug(self):
         with self.assertRaises(Exception):
             find_bugs('test_files/no_bug/bug.txt', 'test_files/no_bug/landscape.txt')
-
-    def test_invalid_landscape(self):
-        with self.assertRaises(Exception):
-            find_bugs('test_files/invalid_landscape/bug.txt', 'test_files/invalid_landscape/landscape.txt')
 
 
 if __name__ == '__main__':

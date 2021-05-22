@@ -7,18 +7,20 @@ from scipy.signal import fftconvolve
 
 def find_bugs(bug_path, landscape_path):
     # Load files
-    landscape_file = open(landscape_path, "r")
-    landscape = [bytearray(line[:-1]) for line in landscape_file]
+    with open(landscape_path, "r") as lf:
+        landscape = [line for line in lf]
+    max_length = len(max(landscape, key=len))
+
+    landscape = [bytearray(line[:-1] + (max_length - len(line)) * ' ', "utf8") for line in landscape]
+
     if len(landscape[-1]) is 0:
         landscape = landscape[:-1]
-    # Check if landscape is valid
-    for line in landscape:
-        if len(line) != len(landscape[0]):
-            raise Exception('Invalid landscape, all lines must be same length')
-    landscape = np.array(landscape)
+
+    landscape_matrix = np.array(landscape)
 
     bug_file = open(bug_path, "r")
     bug = [line[:-1] for line in bug_file]
+
     if len(bug) is 0:
         raise Exception('Bug must not be empty')
     bug_size = [len(bug), len(max(bug, key=len))]
@@ -31,7 +33,7 @@ def find_bugs(bug_path, landscape_path):
 
     # Compute correlation
     reversed_bug = np.flipud(np.fliplr(bug_matrix))
-    correlation = fftconvolve(landscape, reversed_bug.conj(), mode='valid')
+    correlation = fftconvolve(landscape_matrix, reversed_bug.conj(), mode='valid')
 
     # Compute perfect match value
     match_sum = np.sum(np.square(bug_matrix))
